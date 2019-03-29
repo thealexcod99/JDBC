@@ -91,4 +91,19 @@ public class PersonaDAO {
 		return rows != 0;
 	}
 	
+	public boolean insertarPersona(Persona persona) {
+		int rows = 0;
+		String sql = "INSERT INTO persona VALUES (?, ?, ?, ?);";
+		try (PreparedStatement psStatement = conexion.prepareStatement(sql);){
+			psStatement.setInt(1, persona.getId());
+			psStatement.setString(2, persona.getFirstName());
+			psStatement.setString(3, persona.getLastName());
+			psStatement.setString(4, persona.getEmail());
+			rows = psStatement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rows != 0;
+	}
 }

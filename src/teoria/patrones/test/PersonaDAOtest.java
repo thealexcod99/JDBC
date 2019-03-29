@@ -44,7 +44,7 @@ public class PersonaDAOtest {
 				.equals(new Persona("Collin", "Clarae")));
 		assertFalse(personaDAO.borrarPersona("correoInexistente@ggkk.es"));
 	}
-	
+	@Test
 	public void testActualizarPersona() {
 		//PersonaDAO personaDAO = new PersonaDAO();
 		assertTrue(personaDAO.obtenerPersonaPorEmail("cclaraer8@nsw.gov.au")
@@ -53,5 +53,11 @@ public class PersonaDAOtest {
 		assertFalse(personaDAO.obtenerPersonaPorEmail("correo@correos.com")
 				.equals(new Persona("Collin", "Clarae")));
 	}
+	@Test
+	public void testInsertarPersona() {
+		assertTrue(personaDAO.insertarPersona(new Persona(5000, "nombre", "apellidos", "email")));
+		assertTrue(personaDAO.obtenerPersonaPorEmail("email").equals(new Persona("nombre", "apellidos")));
+
+}
 
 }
