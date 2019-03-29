@@ -64,8 +64,31 @@ public class PersonaDAO {
 		return persona;
 	}
 	
-	public boolean borrarPersona(String mail) {
-		return false;
+	public boolean borrarPersona(String email) {
+		int rows = 0;
+		String sql = "DELETE FROM persona WHERE email = ?;";
+		try (PreparedStatement psStatement = conexion.prepareStatement(sql);){
+			psStatement.setString(1, email);
+			rows = psStatement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rows != 0;
+	}
+	
+	public boolean actualizarPersona(int id, String email) {
+		int rows = 0;
+		String sql = "UPDATE persona SET email = ? WHERE id = ?;";
+		try (PreparedStatement psStatement = conexion.prepareStatement(sql);){
+			psStatement.setString(1, email);
+			psStatement.setInt(2, id);
+			rows = psStatement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rows != 0;
 	}
 	
 }
